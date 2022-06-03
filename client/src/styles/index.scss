@@ -1,0 +1,134 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@200;300;400;500;600;700;800;900&display=swap');
+
+:root {
+    --orange    : #f39c12;
+    --blue      : #0097e6;
+    --red       : #e74c3c;
+    --lightColor: #eee;
+    --white     : #fff;
+    --black     : #222;
+    --lightBG   : #333;
+}
+
+* {
+    margin         : 0;
+    padding        : 0;
+    border         : 0;
+    outline        : none;
+    list-style     : none;
+    text-decoration: none;
+    scroll-behavior: smooth;
+    box-sizing     : border-box;
+    font-family    : 'Nunito', sans-serif;
+    transition     : all .1s linear;
+}
+
+/*
+    100% / 16px = 6.25%
+    6.25% == 1px 
+
+    6.25% * 10 = 62.5% 
+    62.5% == 10px
+*/
+html {
+    font-size         : 62.5%;
+    overflow-x        : hidden;
+    background-color  : var(--lightBG);
+    scroll-behavior   : smooth;
+    scroll-padding-top: 5rem;
+
+    &::-webkit-scrollbar {
+        width: 1rem;
+    }
+
+    &::-webkit-scrollbar-track {
+        background: transparent;
+    }
+
+    &::-webkit-scrollbar-thumb {
+        background: var(--orange);
+    }
+}
+
+.btn,
+.delete-btn,
+.option-btn {
+    display       : block;
+    width         : 100%;
+    border-radius : .5rem;
+    color         : var(--white);
+    font-size     : 1.8rem;
+    cursor        : pointer;
+    padding       : 1rem;
+    text-transform: capitalize;
+    text-align    : center;
+    margin-top    : 1rem;
+
+    &:hover {
+        background-color: var(--white);
+        color           : var(--black);
+    }
+}
+
+.btn {
+    font-size       : 2.2rem;
+    background-color: var(--blue);
+}
+
+.delete-btn {
+    background-color: var(--red);
+}
+
+.option-btn {
+    background-color: var(--red);
+}
+
+.flex-btn {
+    display  : flex;
+    flex-wrap: wrap;
+    gap      : 1rem;
+}
+
+.flex-btn>* {
+    flex: 1;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@media (max-width : 991px) {
+
+    html {
+        font-size: 55%;
+    }
+}
+
+@media (max-width : 450px) {
+
+    .flex-btn {
+        flex-flow: column;
+        gap      : 0;
+    }
+
+    .formContainer form {
+        width  : 95%;
+        padding: 2rem;
+
+        p {
+            font-size: 2rem;
+        }
+
+    }
+}

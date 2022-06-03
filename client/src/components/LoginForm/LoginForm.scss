@@ -1,0 +1,65 @@
+.formContainer {
+    display        : flex;
+    align-items    : center;
+    justify-content: center;
+    flex-direction : column;
+    padding        : 2rem;
+    min-height     : 100vh;
+
+    .errorSms {
+        color         : var(--red);
+        font-size     : 2.5rem;
+        padding-bottom: .5rem;
+    }
+
+    .conformSms {
+        color         : var(--blue);
+        font-size     : 2.5rem;
+        padding-bottom: .5rem;
+    }
+
+    form {
+        width           : 50rem;
+        border-radius   : .5rem;
+        background-color: var(--black);
+        padding         : 3rem;
+        padding-bottom  : 3.5rem;
+        text-align      : center;
+
+        h3 {
+            font-size     : 3.5rem;
+            margin-bottom : 1.5rem;
+            color         : var(--white);
+            text-transform: uppercase;
+        }
+
+        .box {
+            width           : 100%;
+            border-radius   : .5rem;
+            padding         : 1.2rem 1.4rem;
+            font-size       : 1.8rem;
+            color           : var(--white);
+            background-color: var(--lightBG);
+            margin          : 1rem 0;
+
+            &::placeholder {
+                text-transform: capitalize;
+            }
+        }
+
+        p {
+            font-size: 2.3rem;
+            color    : var(--lightColor);
+            padding  : 1.5rem 0;
+
+            span {
+                color : var(--blue);
+                cursor: pointer;
+
+                &:hover {
+                    text-decoration: underline;
+                }
+            }
+        }
+    }
+}
