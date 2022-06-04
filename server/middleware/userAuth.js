@@ -2,6 +2,8 @@ import jwt from 'jsonwebtoken'
 
 const userAuth = async (req, res, next) => {
 
+    // console.log(req.headers);
+
     try { // token checking middleware... 
         const { authorization } = req.headers;
 
@@ -12,7 +14,7 @@ const userAuth = async (req, res, next) => {
             const { id, name, role } = decode;
             // these filed's come from token, that set at Login time
 
-            console.log(id, name, role);
+            // console.log(id, name, role);
 
             req.userId = id;
             req.userName = name;
@@ -25,7 +27,6 @@ const userAuth = async (req, res, next) => {
             next('Token Missing❗');
         }
     } catch (error) {
-        // console.table({ errorInfo: error.message });
         next('Authorization Failed...❗');
     }
 }

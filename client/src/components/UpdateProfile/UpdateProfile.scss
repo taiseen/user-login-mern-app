@@ -1,0 +1,64 @@
+.updateProfileContainer {
+
+    display        : flex;
+    align-items    : center;
+    justify-content: center;
+    flex-direction : column;
+    padding        : 2rem;
+    min-height     : 85vh;
+
+    form {
+        width           : 70rem;
+        border-radius   : .5rem;
+        background-color: var(--black);
+        padding         : 3rem;
+        padding-bottom  : 3.5rem;
+        text-align      : center;
+
+        img {
+            width        : 22rem;
+            height       : 22rem;
+            border-radius: 50%;
+            object-fit   : cover;
+            margin-bottom: 1.5rem;
+        }
+
+        .flex {
+            display        : flex;
+            flex-wrap      : wrap;
+            justify-content: space-between;
+            text-align     : left;
+
+            .inputBox {
+                width: 48%;
+
+                span {
+                    font-size  : 1.7rem;
+                    color      : var(--lightColor);
+                    display    : block;
+                    padding-top: 1rem;
+                }
+
+                .box {
+                    width           : 100%;
+                    padding         : 1.2rem 1.4rem;
+                    margin          : 1rem 0;
+                    border-radius   : .5rem;
+                    font-size       : 1.8rem;
+                    color           : var(--white);
+                    background-color: var(--lightBG);
+
+                    &::placeholder {
+                        text-transform: capitalize;
+                    }
+                }
+            }
+        }
+
+        .flex-btn {
+            margin: 1rem 0 .8rem;
+            gap   : 2.5rem;
+
+        }
+    }
+}

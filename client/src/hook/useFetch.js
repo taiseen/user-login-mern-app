@@ -6,6 +6,18 @@ import axios from 'axios';
 // Backend || Server ==> URL Address
 const api = axios.create({ baseURL: 'http://localhost:5000' });
 
+api.interceptors.request.use(req => {
+
+    // 1st ==> get user token from LocalStorage, that server send to client...
+    const serverSendToken = localStorage.getItem('userInfo');
+
+    if (serverSendToken) {
+        // 2nd ==> send this token from LocalStorage into server for user id tracking... 
+        req.headers.authorization = `Bearer ${JSON.parse(serverSendToken)}`;
+    }
+
+    return req;
+});
 
 const useFetch = (endPoint) => {
 
@@ -18,8 +30,8 @@ const useFetch = (endPoint) => {
         const fetchData = async () => {
             setLoading(true);
             try {
-                const { data } = await api.get(endPoint);
-                setData(data);
+                const { data: { result } } = await api.get(endPoint);
+                setData(result);
             } catch (error) {
                 setError(error);
             }
@@ -34,5 +46,15 @@ const useFetch = (endPoint) => {
 export default useFetch;
 
 
+export const getUserInfo = () => useFetch('/userInfo');
+
+export const updateUserInfo = (userInfo) => api.patch('/userInfo/', userInfo);
+export const deleteUserInfo = () => api.delete('/userInfo/');
+
+
 export const userSignUp = (userData) => api.post('/user/signup', userData);
 export const userSignIn = (userData) => api.post('/user/signin', userData);
+
+
+const imageHostingUrl = 'https://api.cloudinary.com/v1_1/taiseen/image/upload';
+export const imageUpload = (imgFile) => axios.post(imageHostingUrl, imgFile);

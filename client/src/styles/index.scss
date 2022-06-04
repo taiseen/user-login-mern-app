@@ -57,7 +57,7 @@ html {
     width         : 100%;
     border-radius : .5rem;
     color         : var(--white);
-    font-size     : 1.8rem;
+    font-size     : 2.2rem;
     cursor        : pointer;
     padding       : 1rem;
     text-transform: capitalize;
@@ -71,7 +71,6 @@ html {
 }
 
 .btn {
-    font-size       : 2.2rem;
     background-color: var(--blue);
 }
 
@@ -80,7 +79,7 @@ html {
 }
 
 .option-btn {
-    background-color: var(--red);
+    background-color: var(--orange);
 }
 
 .flex-btn {
@@ -114,6 +113,19 @@ html {
         font-size: 55%;
     }
 }
+
+@media (max-width : 768px) {
+
+    .updateProfileContainer form {
+        width: 98%;
+
+        .flex .inputBox {
+            width: 100%;
+        }
+    }
+}
+
+
 
 @media (max-width : 450px) {
 

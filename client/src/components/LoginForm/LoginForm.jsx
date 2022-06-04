@@ -51,6 +51,7 @@ const LoginForm = () => {
                     setRegistration(false);
                     setConform('');
                 }, 3000);
+                setError('');
 
             } else {
                 // user login... + header token set...
