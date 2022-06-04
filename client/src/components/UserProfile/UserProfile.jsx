@@ -1,7 +1,7 @@
+import PulseLoader from "react-spinners/PulseLoader";
 import { getUserInfo } from '../../hook/useFetch'
 import { useNavigate } from 'react-router-dom';
 import './UserProfile.scss'
-
 
 const UserProfile = () => {
 
@@ -28,18 +28,18 @@ const UserProfile = () => {
             <section className='userProfileContainer'>
                 {
                     loading
-                        ? 'Loading...'
+                        ? <PulseLoader color={'#f39c12'} size={60} />
                         : <div className="userProfile">
 
                             <img src={
-                                data.userImage
-                                    ? data.userImage
+                                data?.userImage
+                                    ? data?.userImage
                                     : 'https://icon-library.com/images/no-image-icon/no-image-icon-0.jpg'
                             }
                                 alt="user"
                             />
 
-                            <p className='userName'>{data.name}</p>
+                            <p className='userName'>{data?.name}</p>
 
                             <button
                                 className="btn"

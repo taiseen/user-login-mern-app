@@ -12,16 +12,16 @@ export const logger = (req, res, next) => {
 
     fs.appendFile("log.txt", log, err => console.log(err))
 
-    console.log(currentTime,
-        '|', method,
-        '|', originalUrl,
-        '|', protocol,
-        '|', ip,
-        '|', localPort,
-        '|', remoteAddress,
-        '|', remotePort,
-        '|', userRole
-    );
+    // console.log(currentTime,
+    //     '|', method,
+    //     '|', originalUrl,
+    //     '|', protocol,
+    //     '|', ip,
+    //     '|', localPort,
+    //     '|', remoteAddress,
+    //     '|', remotePort,
+    //     '|', userRole
+    // );
 
     next();
 }

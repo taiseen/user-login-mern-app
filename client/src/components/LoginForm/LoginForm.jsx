@@ -66,8 +66,8 @@ const LoginForm = () => {
                 navigate('/');
             }
         } catch (error) {
-            console.log(error);
-            setError(error.response.data.error);
+            console.log("Login/Reg ==> ", error);
+            setError(error?.response?.data?.error);
         }
     }
 

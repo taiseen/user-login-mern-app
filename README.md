@@ -2,15 +2,18 @@
 
 > 3 - Jun - 2022
 
-## User Login System 
+## User Login System | [Client][client] | [Server][server]
 
-# SASS + React + NodeJs + MongoDB
+# SASS + React + ExpressJs + MongoDB
+
+[client]: https://user-login-sys.netlify.app
+[server]: https://user-login-sys.herokuapp.com
 
 
 ## Project Structure
     
     ┌── client 
-    │   ├── public              # root div#id for react app
+    │   ├── public              # root div#id for react application
     │   └── src
     |       ├── components      # all needful components 
     |       ├── constants       # static needful data
@@ -42,7 +45,8 @@
 | 1| yarn add `sass`             | ui styling               |
 | 2| yarn add `axios`            | api CRUD request         |
 | 3| yarn add `react-toastify`   | add notifications        |
-| 4| yarn add `react-router-dom` | for component navigation |
+| 4| yarn add `react-spinners`   | async data loading state |
+| 5| yarn add `react-router-dom` | component navigation inside app |
 
 
 <br/>
@@ -59,3 +63,25 @@
 |5 | yarn add `mongoose`    | creating DB schema/modal for POST-ing data    |
 |6 | yarn add `bcryptjs`    | hashing function for password security        |
 |7 | yarn add `jsonwebtoken`| share security information between two parties|
+
+
+<br/>
+
+
+## Learning context by developing this app:
+|No| Context learn by building this project...      | 
+|--|------------------------------------------------|
+| 1| Project Structure                              | 
+| 2| MongoDB Connection                             |
+| 3| Full CRUD operation                            | 
+| 4| Image handling at UI                           |
+| 5| JSON Web Token for track user                  |
+| 6| Role Base Access Control - `RBAC`              |
+| 7| Using of `toast effect` for notification       |
+| 8| Image file uploaded at `cloudinary.com`        |
+| 9| For async data loading, add loading spinner    |
+| 10| Creating a server side logger for track all URL hit info |
+
+
+
+[Loading... Spinner Example](https://www.davidhu.io/react-spinners)

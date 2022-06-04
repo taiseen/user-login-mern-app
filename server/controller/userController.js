@@ -15,7 +15,7 @@ export const userLogin = async (req, res) => {
 
         const isValidPass = await bcrypt.compare(password, existEmail.password);
 
-        if (isValidPass) {
+        if (!isValidPass) {
 
             // prepare the user object to generate token
             const userObj = { id: existEmail._id, name: existEmail.name, role: existEmail.role };
@@ -30,7 +30,7 @@ export const userLogin = async (req, res) => {
             res.json({ token, message: 'Login Successful✅' });
 
         } else {
-            res.status(501).json({ error: "Authorization Error❗" })
+            res.status(501).json({ error: "User Authorization Error❗" })
         }
     } catch (error) {
         res.status(501).json({ error: "Authorization Error❗" })

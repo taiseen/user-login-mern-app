@@ -1,9 +1,9 @@
-import { getUserInfo, imageUpload, updateUserInfo } from '../../hook/useFetch';
+import { deleteUserInfo, getUserInfo, imageUpload, updateUserInfo } from '../../hook/useFetch';
 import { useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { toast } from 'react-toastify';
+import PulseLoader from "react-spinners/PulseLoader";
 import './UpdateProfile.scss';
-
 
 const UpdateProfile = () => {
 
@@ -13,26 +13,39 @@ const UpdateProfile = () => {
     const [imageFile, setImageFile] = useState('');
 
 
-    useEffect(() => {
-        setUserInfo(data);
-    }, [data])
+    useEffect(() => setUserInfo(data), [data]);
 
-    const userInput = (e) => {
-        const { id, value } = e.target;
-        setUserInfo(prev => ({ ...prev, [id]: value }));
-    }
+    const backButton = () => navigate('/');
 
-    const backButton = () => {
-        navigate('/');
-    }
+    const userInput = e => setUserInfo(prev => ({ ...prev, [e.target.id]: e.target.value }));
+
 
     const deleteProfile = async (e) => {
         e.preventDefault();
-        alert('are you sure want to delete your profile?');
 
+        if (window.confirm("🔴 Are you sure for - deleting your profile? 🔴")) {
+
+            try {
+
+                await deleteUserInfo();
+
+                // display a notification...
+                toast.success("Delete Successful... Bye❗", { autoClose: 2000 });
+
+                // auto Clear localStorage + Navigate app into root 
+                setTimeout(() => {
+                    localStorage.clear();
+                    navigate('/');
+                }, 3000);
+
+            } catch (error) {
+                console.log(error);
+            }
+        }
     }
 
 
+    // user profile update button click functionality...
     const profileUpdate = async (e) => {
         e.preventDefault();
 
@@ -53,7 +66,9 @@ const UpdateProfile = () => {
 
             // update user info at mongodb
             await updateUserInfo(userUpdateInfo);
-            toast.success("Update Successful...");
+
+            // show notification + close after 2 second
+            toast.success("Update Successful...", { autoClose: 2000 });
 
             // setUserInfo(data.result)
         } catch (error) {
@@ -71,7 +86,7 @@ const UpdateProfile = () => {
 
                 {
                     loading
-                        ? 'loading data...'
+                        ? <PulseLoader color={'#f39c12'} size={60} />
                         : <form action="" encType='multipart/form-data'>
 
                             <img src={

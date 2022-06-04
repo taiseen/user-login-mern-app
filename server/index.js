@@ -1,19 +1,17 @@
 import { pageNotFound, errorHandler } from './error/errorHandel.js';
+import { logger } from './middleware/log.js';
 import userInfoRouter from "./router/userInfoRouter.js";
 import userRouter from "./router/userRouter.js";
 import mongodb from "./connection/mongodb.js";
-// import cookieParser from 'cookie-parser';
 import express from 'express';
 import dotenv from 'dotenv';
 import cors from 'cors';
-import { logger } from './middleware/log.js';
 dotenv.config();
 
 
 const app = express()
 
 
-// app.use(cookieParser('COOKIE_KEY')); // parse signed cookie
 app.use('/fav.ico', express.static('public/fav.ico'));
 app.use(express.static('public'));
 app.use(express.json());
@@ -22,11 +20,8 @@ app.use(logger);
 
 
 
-// app.use('/', (req, res) => { res.json({ sms: "Hello..." }) });
 app.use('/userInfo', userInfoRouter);
 app.use('/user', userRouter);
-
-
 
 
 
@@ -65,6 +60,10 @@ const welcomeMessage = (req, res) => {
                 border        : 1px solid black;
                 border-radius : 3px;
             }
+            
+            span{ 
+                color  : #f39c12;
+            }
 
             img{
                 width  : 650px;
@@ -74,7 +73,7 @@ const welcomeMessage = (req, res) => {
     </head>
 
     <body>
-        <h1> User Login - Server is running... ✅ </h1>
+        <h1> User Login - Server run at port <span>${PORT}</span> </h1>
         <img src='server.png'/>
     </body>
     `);
