@@ -1,6 +1,6 @@
 // 404 URL error handler
-export const pageNotFound = (res, req, next) => {
-    req.status(404).json({ page: '404 | URL Not Found' });
+export const pageNotFound = (req, res, next) => {
+    res.status(404).json({ page: '404 | URL Not Found' });
     next();
 }
 

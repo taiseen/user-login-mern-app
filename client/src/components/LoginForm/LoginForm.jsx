@@ -59,7 +59,7 @@ const LoginForm = () => {
                 setConform(data.message);
                 setError('');
 
-                // save user info at localStorage
+                // save user token at localStorage, that send by server
                 localStorage.setItem('userInfo', JSON.stringify(data.token));
 
                 // navigate user into user profile page...

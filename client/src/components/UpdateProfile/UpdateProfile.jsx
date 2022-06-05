@@ -5,6 +5,7 @@ import { toast } from 'react-toastify';
 import PulseLoader from "react-spinners/PulseLoader";
 import './UpdateProfile.scss';
 
+
 const UpdateProfile = () => {
 
     const navigate = useNavigate();
@@ -182,14 +183,4 @@ const UpdateProfile = () => {
     )
 }
 
-export default UpdateProfile
-
-
-{/* <div className='box'>
-<FileBase
-    type='file'
-    multiple={false}
-    onChange={e => setImageFile(e.target.files[0])}
-    onDone={({ base64 }) => setUserInfo({ ...userInfo, image: base64 })}
-/>
-</div> */}
+export default UpdateProfile;

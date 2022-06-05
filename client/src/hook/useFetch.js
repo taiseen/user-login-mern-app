@@ -15,7 +15,8 @@ api.interceptors.request.use(req => {
     const serverSendToken = localStorage.getItem('userInfo');
 
     if (serverSendToken) {
-        // 2nd ==> send this token from LocalStorage into server for user id tracking... 
+        // 2nd ==> send this token from LocalStorage into server for user id tracking...
+        // & we can see it by at browser Network Console
         req.headers.authorization = `Bearer ${JSON.parse(serverSendToken)}`;
     }
 

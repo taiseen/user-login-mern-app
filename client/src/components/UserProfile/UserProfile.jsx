@@ -3,11 +3,11 @@ import { getUserInfo } from '../../hook/useFetch'
 import { useNavigate } from 'react-router-dom';
 import './UserProfile.scss'
 
+
 const UserProfile = () => {
 
     const navigate = useNavigate();
     const { data, loading } = getUserInfo();
-
 
     // user logout button press...
     const userLogout = () => {
@@ -16,14 +16,12 @@ const UserProfile = () => {
     }
 
     // user update profile button press...
-    const userProfileUpdate = () => {
-        navigate('/updateProfile');
-    }
+    const userProfileUpdate = () => navigate('/updateProfile');
 
 
     return (
         <>
-            <h1 className="userInfoTitle"> <span>User</span> Profile</h1>
+            <h1 className="userInfoTitle"><span>User</span> Profile</h1>
 
             <section className='userProfileContainer'>
                 {
@@ -41,20 +39,9 @@ const UserProfile = () => {
 
                             <p className='userName'>{data?.name}</p>
 
-                            <button
-                                className="btn"
-                                onClick={userProfileUpdate}
-                            >
-                                update profile
-                            </button>
+                            <button className="btn" onClick={userProfileUpdate}> update profile </button>
+                            <button className="delete-btn" onClick={userLogout}> logout </button>
 
-
-                            <button
-                                className="delete-btn"
-                                onClick={userLogout}
-                            >
-                                logout
-                            </button>
                         </div>
                 }
             </section>
@@ -62,4 +49,4 @@ const UserProfile = () => {
     )
 }
 
-export default UserProfile
+export default UserProfile;
