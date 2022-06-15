@@ -12,7 +12,8 @@ const UpdateProfile = () => {
     const { data, loading } = getUserInfo();
     const [userInfo, setUserInfo] = useState();
     const [imageFile, setImageFile] = useState('');
-
+    const [isUpdating, setIsUpdating] = useState(false);
+    
 
     useEffect(() => setUserInfo(data), [data]);
 
@@ -34,10 +35,8 @@ const UpdateProfile = () => {
                 toast.success("Delete Successful... Bye❗", { autoClose: 2000 });
 
                 // auto Clear localStorage + Navigate app into root 
-                setTimeout(() => {
-                    localStorage.clear();
-                    navigate('/');
-                }, 3000);
+                localStorage.clear();
+                setTimeout(() => navigate('/'), 3000);
 
             } catch (error) {
                 console.log(error);
@@ -65,8 +64,10 @@ const UpdateProfile = () => {
                 userUpdateInfo = { ...userInfo }
             }
 
+            setIsUpdating(true);
             // update user info at mongodb
             await updateUserInfo(userUpdateInfo);
+            setIsUpdating(false);
 
             // show notification + close after 2 second
             toast.success("Update Successful...", { autoClose: 2000 });
@@ -89,6 +90,13 @@ const UpdateProfile = () => {
                     loading
                         ? <PulseLoader color={'#f39c12'} size={60} />
                         : <form action="" encType='multipart/form-data'>
+                            
+                            {   // when user update and press update button for profile updating...
+                                isUpdating &&
+                                <div className="updateLoader">
+                                    <PulseLoader color={'#f39c12'} size={60} />
+                                </div>
+                            }
 
                             <img src={
                                 imageFile
@@ -99,6 +107,7 @@ const UpdateProfile = () => {
                             }
                                 alt="userPhoto"
                             />
+
 
                             <div className="flex">
 
