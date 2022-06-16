@@ -4,8 +4,8 @@ import axios from 'axios';
 
 
 // Backend || Server ==> URL Address
-const api = axios.create({ baseURL: 'http://localhost:5000' });
-// const api = axios.create({ baseURL: 'https://user-login-sys.herokuapp.com' });
+// const api = axios.create({ baseURL: 'http://localhost:5000' });
+const api = axios.create({ baseURL: 'https://user-login-sys.herokuapp.com' });
 
 
 // with every url request send user identification at server side for authentication...
@@ -34,7 +34,9 @@ const useFetch = (endPoint) => {
 
 
     useEffect(() => {
+
         const fetchData = async () => {
+            
             setLoading(true);
             try {
                 const { data: { result } } = await api.get(endPoint);
@@ -44,7 +46,9 @@ const useFetch = (endPoint) => {
             }
             setLoading(false);
         }
+
         fetchData();
+
     }, [endPoint]);
 
     return { data, loading, error };

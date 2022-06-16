@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { toast } from 'react-toastify';
 import PulseLoader from "react-spinners/PulseLoader";
+import sweetAlert from 'sweetalert2';
 import './UpdateProfile.scss';
 
 
@@ -13,7 +14,7 @@ const UpdateProfile = () => {
     const [userInfo, setUserInfo] = useState();
     const [imageFile, setImageFile] = useState('');
     const [isUpdating, setIsUpdating] = useState(false);
-    
+
 
     useEffect(() => setUserInfo(data), [data]);
 
@@ -25,9 +26,40 @@ const UpdateProfile = () => {
     const deleteProfile = async (e) => {
         e.preventDefault();
 
-        if (window.confirm("🔴 Are you sure for - deleting your profile? 🔴")) {
+        // if (window.confirm("🔴 Are you sure for - deleting your profile? 🔴")) {
 
-            try {
+        //     try {
+
+        //         await deleteUserInfo();
+
+        //         // display a notification...
+        //         toast.success("Delete Successful... Bye❗", { autoClose: 2000 });
+
+        //         // auto Clear localStorage + Navigate app into root 
+        //         localStorage.clear();
+        //         setTimeout(() => navigate('/'), 3000);
+
+        //     } catch (error) {
+        //         console.log(error);
+        //     }
+        // }
+
+        try {
+
+            // get confirmation from user for delete or not?
+            const { value } = await sweetAlert.fire({
+                icon: 'warning',
+                title: 'Are you sure?',
+                text: "You won't be able to revert this!.",
+                allowOutsideClick: false,
+                confirmButtonColor: '#cc0000',
+                cancelButtonColor: '#009900',
+                showCancelButton: true,
+                confirmButtonText: 'Yes, delete it!',
+                cancelButtonText: 'No, cancel!',
+            });
+
+            if (value) {
 
                 await deleteUserInfo();
 
@@ -38,9 +70,16 @@ const UpdateProfile = () => {
                 localStorage.clear();
                 setTimeout(() => navigate('/'), 3000);
 
-            } catch (error) {
-                console.log(error);
+                sweetAlert.fire({
+                    icon: 'success',
+                    title: 'Deleted!',
+                    text: `Your profile data has been deleted.`,
+                    showConfirmButton: false,
+                    timer: 2000,
+                });
             }
+        } catch (error) {
+            console.log(error);
         }
     }
 
@@ -90,7 +129,7 @@ const UpdateProfile = () => {
                     loading
                         ? <PulseLoader color={'#f39c12'} size={60} />
                         : <form action="" encType='multipart/form-data'>
-                            
+
                             {   // when user update and press update button for profile updating...
                                 isUpdating &&
                                 <div className="updateLoader">

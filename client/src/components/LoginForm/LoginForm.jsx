@@ -1,6 +1,7 @@
 import { userSignIn, userSignUp } from '../../hook/useFetch';
 import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
+import PulseLoader from "react-spinners/PulseLoader";
 import './LoginForm.scss';
 
 
@@ -16,6 +17,7 @@ const LoginForm = () => {
     const navigate = useNavigate();
     const [error, setError] = useState('');
     const [conform, setConform] = useState('');
+    const [isLoading, setIsLoading] = useState(false);
     const [userInfo, setUserInfo] = useState(initialState);
     const [registration, setRegistration] = useState(false);
 
@@ -41,10 +43,13 @@ const LoginForm = () => {
 
         try {
             if (registration) {
-                // user registration 
-                const { data } = await userSignUp(userInfo);
-                setConform(data.message);
 
+                // user registration  
+                setIsLoading(true);
+                const { data } = await userSignUp(userInfo);
+                setIsLoading(false);
+
+                setConform(data.message);
                 // after 3 second auto redirect user into login state...
                 // & clear conform info...
                 setTimeout(() => {
@@ -58,6 +63,7 @@ const LoginForm = () => {
                 const { data } = await userSignIn(userInfo);
                 setConform(data.message);
                 setError('');
+                setIsLoading(false);
 
                 // save user token at localStorage, that send by server
                 localStorage.setItem('userInfo', JSON.stringify(data.token));
@@ -67,7 +73,9 @@ const LoginForm = () => {
             }
         } catch (error) {
             console.log("Login/Reg ==> ", error);
+            setIsLoading(false);
             setError(error?.response?.data?.error);
+
         }
     }
 
@@ -79,6 +87,8 @@ const LoginForm = () => {
 
             <p className='errorSms'>{error && error}</p>
             <p className='conformSms'>{conform && conform}</p>
+            {isLoading && <PulseLoader color={'#f39c12'} size={30} />}
+
             <form action="" onSubmit={handleSubmit} >
                 {
                     registration
