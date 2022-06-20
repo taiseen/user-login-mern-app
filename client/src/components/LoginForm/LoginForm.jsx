@@ -28,6 +28,7 @@ const LoginForm = () => {
         setUserInfo(prev => ({ ...prev, [id]: value }));
     }
 
+
     // toggle between login & registration + clear input fields
     const registrationToggle = () => {
         setError('');
@@ -44,25 +45,27 @@ const LoginForm = () => {
         try {
             if (registration) {
 
+                setError('');
                 // user registration  
                 setIsLoading(true);
                 const { data } = await userSignUp(userInfo);
                 setIsLoading(false);
-
                 setConform(data.message);
+
                 // after 3 second auto redirect user into login state...
                 // & clear conform info...
                 setTimeout(() => {
                     setRegistration(false);
                     setConform('');
-                }, 3000);
-                setError('');
+                }, 2200);
 
             } else {
+
+                setError('');
+                setIsLoading(true);
                 // user login... + header token set...
                 const { data } = await userSignIn(userInfo);
                 setConform(data.message);
-                setError('');
                 setIsLoading(false);
 
                 // save user token at localStorage, that send by server
@@ -75,7 +78,6 @@ const LoginForm = () => {
             console.log("Login/Reg ==> ", error);
             setIsLoading(false);
             setError(error?.response?.data?.error);
-
         }
     }
 
@@ -85,9 +87,14 @@ const LoginForm = () => {
     return (
         <section className="formContainer">
 
-            <p className='errorSms'>{error && error}</p>
-            <p className='conformSms'>{conform && conform}</p>
-            {isLoading && <PulseLoader color={'#f39c12'} size={30} />}
+            <div className='infoShow'>
+                <p className='errorSms'>{error && error}</p>
+                <p className='conformSms'>{conform && conform}</p>
+                {
+                    isLoading &&
+                    <PulseLoader color={'#f39c12'} size={30} />
+                }
+            </div>
 
             <form action="" onSubmit={handleSubmit} >
                 {
@@ -131,11 +138,16 @@ const LoginForm = () => {
                     {
                         registration
                             ? <p>Already have an account? <span>Login Now</span> </p>
-                            : <p>Dont have an account? <span>Create Now</span> </p>
+                            : <p>Don't have an account? <span>Create Now</span> </p>
                     }
                 </div>
 
                 <button className='btn'>Submit</button>
+
+                {
+                    !registration && <p className='passForget'>Forget password? <span>Click here</span></p>
+                }
+
             </form>
         </section>
     )
