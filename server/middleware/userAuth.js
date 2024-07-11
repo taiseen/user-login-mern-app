@@ -1,3 +1,4 @@
+import config from '../config/index.js';
 import jwt from 'jsonwebtoken'
 
 const userAuth = async (req, res, next) => {
@@ -7,7 +8,7 @@ const userAuth = async (req, res, next) => {
         const token = req.headers.authorization.split(' ')[1]; // ✅ 1st
 
         if (token) { 
-            const decode = jwt.verify(token, process.env.JWT_KEY); // ✅ 2nd
+            const decode = jwt.verify(token, config.jwt.secret); // ✅ 2nd
             const { id, name, role } = decode;
             // these filed's come from token, that set at Login time
 
