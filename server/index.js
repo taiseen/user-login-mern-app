@@ -1,5 +1,4 @@
 import { pageNotFound, errorHandler } from './error/errorHandel.js';
-import { logger } from './middleware/log.js';
 import userInfoRouter from "./router/userInfoRouter.js";
 import userRouter from "./router/userRouter.js";
 import mongodb from "./connection/mongodb.js";
@@ -16,7 +15,6 @@ app.use('/fav.ico', express.static('public/fav.ico'));
 app.use(express.static('public'));
 app.use(express.json());
 app.use(cors());
-app.use(logger);
 
 
 
