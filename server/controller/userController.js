@@ -1,4 +1,5 @@
 import UserModel from "../model/UserModel.js";
+import config from "../config/index.js";
 import jwt from 'jsonwebtoken';
 import bcrypt from 'bcrypt';
 
@@ -12,7 +13,7 @@ export const userLogin = async (req, res) => {
 
         if (existEmail === null) // ✅ 2nd - if no email found...
             return res.status(401).json({ error: 'Email not exist❗' });
-            
+
         // ✅ 3rd - match encrypted password with user given password
         const isValidPass = await bcrypt.compare(password, existEmail.password);
 
@@ -22,7 +23,7 @@ export const userLogin = async (req, res) => {
             const userObj = { id: existEmail._id, name: existEmail.name, role: existEmail.role };
 
             // ✅ 5th - generate token 
-            const token = jwt.sign(userObj, process.env.JWT_KEY, { expiresIn: '1D' });
+            const token = jwt.sign(userObj, config.jwt.secret, { expiresIn: config.jwt.expiresIn });
 
             // ✅ 6th - set token into header for authorization at client side.
             // res.header('Authorization', 'Bearer ' + token);

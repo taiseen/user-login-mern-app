@@ -27,8 +27,8 @@ app.use('/user', userRouter);
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
-    mongodb();
     console.log('Server Start on port :', PORT, '🟩');
+    mongodb();
 });
 
 

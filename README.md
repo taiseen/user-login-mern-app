@@ -10,7 +10,34 @@
 [server]: https://user-login-sys.herokuapp.com
 
 
-## Project Structure
+## Project Setup:-
+
+* For Client:-
+    * cd /client
+    * `yarn`
+
+* For Server:-
+    * cd /server
+    * `yarn`
+
+
+```
+For Server need these 3 values...
+MONGODB_URI = ********************
+JWT_SECRET = ********************
+JWT_EXPIRES_IN = ********************
+```
+
+## Package Upgrade:-
+```
+* npm install -g npm-check-updates
+* ncu -u
+
+old package update cmd --> yarn upgrade
+```
+
+
+## Project Structure:-
     
     ┌── client 
     │   ├── public              # root div#id for react application
